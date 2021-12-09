@@ -1,5 +1,13 @@
+  //The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed,
+  // without waiting for stylesheets, images, and subframes to finish loading.
+
+  //The addEventListener() method attaches an event handler to an element without overwriting existing event handlers
+
+  //You can add event listeners to any DOM object not only HTML elements. i.e the window object.
 window.addEventListener('DOMContentLoaded', (event) =>{
     //Salary Range
+    //The Document method querySelector() returns the first Element within the document that matches
+    //the specified selector, or group of selectors. If no matches are found, null is returned.
     const salary = document.querySelector('#salary');
     const output = document.querySelector('.salary-output');
     output.textContent = salary.value;
@@ -59,7 +67,7 @@ const createEmployeePayroll = () => {
     alert(employeePayrollData.toString());
     return employeePayrollData;
 }
-
+  // 
 const getSelectedValues = (propertyValue) => {
     let allItems = document.querySelectorAll(propertyValue);
     let selItems = [];
@@ -69,13 +77,15 @@ const getSelectedValues = (propertyValue) => {
     });
     return selItems;
 }
-
+    // featching the detail or input value by using id using getInputValueById
 const getInputValueById = (id) => {
     let value = document.querySelector(id).value;
     return value;
 }
 
 function createAndUpdateStorage(employeePayrollData) {
+    //Json object that provides functions to convert JavaScript values to 
+    //and from the JavaScript Object Notation (JSON) format
     let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
     if (employeePayrollList != undefined) {
         employeePayrollList.push(employeePayrollData);
@@ -83,6 +93,7 @@ function createAndUpdateStorage(employeePayrollData) {
         employeePayrollList = [employeePayrollData];
     }
     alert(employeePayrollList.toString());
+    // stringify means Converts a JavaScript value to a JavaScript Object Notation (JSON) string.
     localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
 }
 const resetForm = () => {
@@ -92,13 +103,14 @@ const resetForm = () => {
     unsetSelectedValues('[name=department]');
     setValue('#salary', '');
     setValue('#notes', '');
-    setValue('#day', 'Day');
-    setValue('#month', 'Month');
-    setValue('#year', 'Year');
+    setValue('#day', '1');
+    setValue('#month', 'January');
+    setValue('#year', '2021');
 };
 
 const unsetSelectedValues = (propertyValue) => {
     let allItems = document.querySelectorAll(propertyValue);
+    // ForEach Performs the specified action for each node in an list.
     allItems.forEach(item => {
         item.checked = false;
     });
@@ -110,6 +122,7 @@ const setTextValue = (id, value) => {
 }
 
 const setValue = (id, value) => {
+    //Returns the first element that is a descendant of node that matches selectors.
     const element = document.querySelector(id);
     element.value = value;
 }
